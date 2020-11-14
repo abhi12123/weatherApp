@@ -15,6 +15,7 @@ window.addEventListener('load',()=>{
             const api=`${proxy}http://api.weatherapi.com/v1/current.json?key=b481e56ae47e41628e6200454201311&q=${lat},${long}`;
             fetch(api).then(Response=>{
                 return Response.json();
+                console.log(Response);
             }).then(data =>{
                 console.log(data);
                 console.log(data.current.condition.icon);
