@@ -13,12 +13,13 @@ window.addEventListener('load',()=>{
         navigator.geolocation.getCurrentPosition(position=>{
             long= position.coords.longitude;
             lat=position.coords.latitude;
-            const proxy=`https://cors-anywhere.herokuapp.com/`;
+           // const proxy=`https://cors-anywhere.herokuapp.com/`;
+            //Faetching API data using weatherapi
             const api=`http://api.weatherapi.com/v1/current.json?key=b481e56ae47e41628e6200454201311&q=${lat},${long}`;
             fetch(api).then(Response=>{
                 return Response.json();
-                console.log(Response);
             }).then(data =>{
+                //initialising data to DOM elements
                 console.log(data);
                 console.log(data.current.condition.icon);
                 temperatureDegree.textContent=data.current.temp_c;
@@ -26,6 +27,7 @@ window.addEventListener('load',()=>{
                 temperatureDescription.textContent=data.current.condition.text;
                 let imglink=data.current.condition.icon;
                 icon.innerHTML=`<img src='https:${imglink}'>`;
+                //change C to F on click function
                 degreeSection.addEventListener('click',()=>{
                     if (CorF.textContent=='C'){
                         CorF.textContent='F';
@@ -34,8 +36,8 @@ window.addEventListener('load',()=>{
                         CorF.textContent='C';
                         temperatureDegree.textContent=data.current.temp_c;
                     }
-                })
-            })
+                })//end degreeSection.addEventListener
+            })//end then(data)
         });
     }
 })
