@@ -1,5 +1,6 @@
 window.addEventListener('load',()=>{
-    let long;
+    //initialising various elements of the DOM
+    let long;              
     let lat;
     let temperatureDescription=document.querySelector('.temperature-description');
     let temperatureDegree=document.querySelector('.temperature-degree');
@@ -7,12 +8,13 @@ window.addEventListener('load',()=>{
     let icon=document.querySelector('p');
     let CorF=document.querySelector('span');
     let degreeSection=document.querySelector('.degree-section');
+    //using browser navigator API to get the current longitude and latitude
     if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition(position=>{
             long= position.coords.longitude;
             lat=position.coords.latitude;
             const proxy=`https://cors-anywhere.herokuapp.com/`;
-            const api=`${proxy}http://api.weatherapi.com/v1/current.json?key=b481e56ae47e41628e6200454201311&q=${lat},${long}`;
+            const api=`http://api.weatherapi.com/v1/current.json?key=b481e56ae47e41628e6200454201311&q=${lat},${long}`;
             fetch(api).then(Response=>{
                 return Response.json();
                 console.log(Response);
